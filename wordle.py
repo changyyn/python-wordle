@@ -7,6 +7,10 @@ class Wordle:
         self.word = word.upper()
         self.word_size = len(word)
 
+    def get_word(self):
+
+        return self.word
+
     def get_result_from_guess(self, guess):
         
         if len(guess) != self.word_size:
@@ -22,7 +26,8 @@ class Wordle:
             if word_c == guess_c:
                 result[i] = Color.GREEN
                 letter_count[word_c] -= 1
-        # Get the leftovers
+
+        # Mark the letters that are still in the word but not in the correct position
         for i, (color, guess_c) in enumerate(zip(result, guess)):
             if color == Color.BLACK and guess_c in letter_count and letter_count[guess_c] > 0:
                 result[i] = color.YELLOW
